@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="jobApp">
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.js"></script>
+</head>
+<body ng-controller="jobController">
+	<form ng-submit="submitApplicant()">
+		<label>name</label><input ng-model="applicant.name" name="name"/><br/>
+		<label>bio</label><input ng-model="applicant.bio" name="bio"/><br/>
+		<label>skills</label><input ng-model="applicant.skills" name="skills"/><br/>
+		<label>years</label><input ng-model="applicant.years" name="years"/><br/>
+		<label>why</label><input ng-model="applicant.why" name="why"/>
+		<input type="submit"/>
+	</form>
+
+<script type="text/javascript" src="./javascripts/main.js"></script>
+</body>
+</html>

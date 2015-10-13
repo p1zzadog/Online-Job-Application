@@ -17,27 +17,37 @@ var Applicants = mongoose.model('Applicants', applicantSchema);
 
 
 var app = express();
-app.set('view engine', 'jade');
-app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser());
 
 app.get('/', function(req, res) {
-	res.render('index');
+	res.sendFile('/views/index.html', {root:'./'});
 });
 
 // displays a list of applicants
 app.get('/applicants', function(req, res){
-	res.render('applicants')
+	res.sendFile('/views/applicants.html',{root:'./'})
+});
+
+app.get('/pullapplicants', function(req, res){
+	Applicants.find({}, function(err, data){
+		if(err){
+			console.log('error ',err);
+			res.send(err);
+		}
+		else{
+			res.send(data);
+		};
+	});
 });
 
 // creates and applicant
-app.post('/applicant', function(req, res){
+app.post('/newApplicant', function(req, res){
 	// Here is where you need to get the data
 	// from the post body and store it in the database
 	console.log(req.body);
 	
-	var newApplicant = new Applicants({
+	var createApplicant = new Applicants({
 		name : req.body.name,
 		bio  : req.body.bio,
 		skills : req.body.skills.split(','),
@@ -45,7 +55,7 @@ app.post('/applicant', function(req, res){
 		fluffery : req.body.why
 	});
 
-	newApplicant.save(function(err, data){
+	createApplicant.save(function(err, data){
 		if (err) {
 			res.send('there was an error, bro');
 		}
@@ -55,7 +65,7 @@ app.post('/applicant', function(req, res){
 });
 
 app.get('/success', function(req, res){
-	res.render('success')
+	res.send('success, bro')
 });
 
 var server = app.listen(8441, function() {
