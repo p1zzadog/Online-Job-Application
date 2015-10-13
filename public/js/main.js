@@ -2,16 +2,7 @@ angular.module('jobApp', []);
 
 angular.module('jobApp').controller('jobController', ['$scope', '$http', function($scope, $http){
 
-	// $scope.applicant = {
-	// 	name   : '',
-	// 	bio    : '',
-	// 	skills : '',
-	// 	years  : '',
-	// 	why    : ''
-	// };
-
 	$scope.submitApplicant = function(){
-		console.log($scope.applicant)
 		$http.post('/newApplicant', $scope.applicant)
 			.then(function(returnData){
 				console.log(returnData.data)
@@ -28,5 +19,13 @@ angular.module('jobApp').controller('viewController', ['$scope', '$http', functi
 	}, function(error){
 		console.log(error);
 	});
+
+	$scope.deleteResource = function(index){
+		var resourceID = $scope.applicantArray[index]
+		$http.post('/deleteresource', resourceID).then(function(returnData){
+			$scope.applicantArray = returnData.data
+		})
+
+	}
 
 }]);
