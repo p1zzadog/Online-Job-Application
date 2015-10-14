@@ -13,6 +13,8 @@ app.use('/pullapplicants', routes);
 app.use('/newApplicant', routes);
 app.use('/success', routes);
 app.use('/deleteresource', routes);
+app.use('/:userid', routes);
+app.use('/getoneapplication', routes);
 
 var port = 3000
 var server = app.listen(port, function() {

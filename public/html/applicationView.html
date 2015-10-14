@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="jobApp">
+<head>
+	<title>applicantView</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+</head>
+<body ng-controller="applicationController">
+	<h3>Application View</h3>
+	<div ng-bind="applicationData.name">{{applicationData.name}}</div>
+	<div ng-bind="applicationData.bio">{{applicationData.bio}}</div>	
+	<div ng-bind="applicationData.skills">{{applicationData.skills}}</div>	
+	<div ng-bind="applicationData.years">{{applicationData.years}}</div>	
+	<div ng-bind="applicationData.fluffery">{{applicationData.fluffery}}</div>		
+	
+
+
+
+	<script type="text/javascript" src="./js/main.js"></script>
+</body>
+</html>

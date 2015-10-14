@@ -1,4 +1,5 @@
-angular.module('jobApp', []);
+angular.module('jobApp', ['ngRoute'])
+
 
 angular.module('jobApp').controller('jobController', ['$scope', '$http', function($scope, $http){
 
@@ -12,7 +13,7 @@ angular.module('jobApp').controller('jobController', ['$scope', '$http', functio
 }]);
 
 
-angular.module('jobApp').controller('viewController', ['$scope', '$http', function($scope, $http){
+angular.module('jobApp').controller('viewController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 
 	$http.get('/pullapplicants').then(function(returnData){
 		$scope.applicantArray = returnData.data;
@@ -21,11 +22,19 @@ angular.module('jobApp').controller('viewController', ['$scope', '$http', functi
 	});
 
 	$scope.deleteResource = function(index){
-		var resourceID = $scope.applicantArray[index]
+		var resourceID = $scope.applicantArray[index];
 		$http.post('/deleteresource', resourceID).then(function(returnData){
-			$scope.applicantArray = returnData.data
-		})
+			$scope.applicantArray = returnData.data;
+		});
+	};
 
-	}
+}]);
+
+angular.module('jobApp').controller('applicationController', ['$scope', '$http', function($scope, $http){
+
+	$http.post('/getoneapplication', {id: window.location.pathname.split('/')[1]}).then(function(returnData){
+		$scope.applicationData = returnData.data[0];
+	});
+	
 
 }]);

@@ -4,14 +4,14 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
 </head>
 <body ng-controller="viewController">
 	<ul>
-	<li ng-repeat="applicant in applicantArray">{{applicant.name}}<button ng-click="deleteResource($index)">delete this resource</button></li>
-
+		<li ng-repeat="applicant in applicantArray"><a href="/{{applicant._id}}">{{applicant.name}}</a>
+			<button ng-click="deleteResource($index)">delete this resource</button>
+		</li>
 	</ul>
-		
-
 <script type="text/javascript" src="./js/main.js"></script>
 </body>
 </html>
